@@ -2,7 +2,7 @@ function info() {
     console.log("INFO")
     const response = {
         apiversion: "1",
-        author: "",
+        author: "natyork",
         color: "#B109AA",
         head: "pixel",
         tail: "pixel"
