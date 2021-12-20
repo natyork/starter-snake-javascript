@@ -9,8 +9,8 @@ function createGameState(myBattlesnake) {
         },
         turn: 0,
         board: {
-            height: 0,
-            width: 0,
+            height: 11,
+            width: 11,
             food: [],
             snakes: [myBattlesnake],
             hazards: []
@@ -54,4 +54,18 @@ describe('Battlesnake Moves', () => {
             expect(allowedMoves).toContain(moveResponse.move)
         }
     })
+})
+
+describe('Battlesnake Avoid Walls', () => {
+  test('avoids left wall', () => {
+    const me = createBattlesnake("me", [{x: 0, y: 5}])
+    const gameState = createGameState(me)
+    // Act 1,000x (this isn't a great way to test, but it's okay for starting out)
+    for (let i = 0; i < 1000; i++) {
+        const moveResponse = move(gameState)
+        // In this state, we should NEVER move left.
+        const allowedMoves = ["up", "down", "right"]
+        expect(allowedMoves).toContain(moveResponse.move)
+    }
+  })
 })
